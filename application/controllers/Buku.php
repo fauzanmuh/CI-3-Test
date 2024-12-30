@@ -8,19 +8,26 @@ class Buku extends CI_Controller
         parent::__construct();
         $this->load->model('Buku_model');
         $this->load->library('form_validation');
+        $this->load->library('pagination');
     }
     
     public function index()
     {
+        $config['total_rows'] = $this->Buku_model->countAllBuku();
+        $config['per_page'] = 8;
+
+        $this->pagination->initialize($config);
+
         $data = [
-            'title' => 'Daftar Buku'];
-        $data['buku'] = $this->Buku_model->getAllBuku(1);
+            'title' => 'Daftar Buku',
+            'start' => $this->uri->segment(3)];
+        $data['buku'] = $this->Buku_model->getAllBuku($config['per_page'], $data['start']);
 
         if ($this->input->post('keyword')) {
             $data['buku'] = $this->Buku_model->searchBuku();
         }
         $this->load->view('layouts/app', $data);
-        $this->load->view('buku/index'); 
+        $this->load->view('buku/index', $data); 
     }
 
     public function create()

@@ -2,9 +2,9 @@
 
 class Buku_model extends CI_Model
 {
-    public function getAllBuku()
+    public function getAllBuku($limit, $start)
     {
-        return $this->db->get('buku')->result_array();
+        return $this->db->get('buku', $limit, $start)->result_array();
     }
 
     public function createBuku()
@@ -46,7 +46,12 @@ class Buku_model extends CI_Model
         $this->db->like('judul', $keyword);
         $this->db->or_like('penulis', $keyword);
         $this->db->or_like('penerbit', $keyword);
+        $this->db->or_like('tahun_terbit', $keyword);
         return $this->db->get('buku')->result_array();
     }
 
+    public function countAllBuku()
+    {
+        return $this->db->get('buku')->num_rows();
+    }
 }
