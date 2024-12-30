@@ -17,11 +17,27 @@ class Buku_model extends CI_Model
         ];
         $this->db->insert('buku', $data);
     }
+
+    public function getBukuById($id)
+    {
+        return $this->db->get_where('buku', ['id' => $id])->row_array();
+    }
+
+    public function editBuku()
+    {
+        $data = [
+            'judul' => $this->input->post('judul', true),
+            'penulis' => $this->input->post('penulis', true),
+            'penerbit' => $this->input->post('penerbit', true),
+            'tahun_terbit' => $this->input->post('tahun_terbit', true)
+        ];
+        $this->db->where('id', $this->input->post('id'));
+        $this->db->update('buku', $data);
+    }
     
     public function deleteBuku($id)
     {
-        $this->db->where('id', $id); 
-        $this->db->delete('buku');
+        $this->db->delete('buku', ['id' => $id]);
     }
 
     public function searchBuku()
