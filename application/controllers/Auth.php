@@ -11,4 +11,12 @@ class Auth extends CI_Controller {
         $this->load->view('layouts/app', $data);
         $this->load->view('auth/login', $data);
     }
+    
+    public function register() {
+        $data = [
+            'title' => 'Registration'];
+        
+        $this->load->view('layouts/app', $data);
+        $this->load->view('auth/register', $data);
+    }
 }
