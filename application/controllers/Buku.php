@@ -14,7 +14,7 @@ class Buku extends CI_Controller
     public function index()
     {
         $config['total_rows'] = $this->Buku_model->countAllBuku();
-        $config['per_page'] = 8;
+        $config['per_page'] = 10;
 
         $this->pagination->initialize($config);
 

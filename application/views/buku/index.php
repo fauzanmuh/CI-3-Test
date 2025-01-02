@@ -33,33 +33,35 @@
             </div>
             <?php endif; ?>
 
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">Judul</th>
-                        <th scope="col">Penulis</th>
-                        <th scope="col">Penerbit</th>
-                        <th scope="col">Tahun Terbit</th>
-                        <th scope="col">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($buku as $b): ?>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead>
                         <tr>
-                            <th scope="row"><?= ++$start; ?></th>
-                            <td><?= $b['judul']; ?></td>
-                            <td><?= $b['penulis']; ?></td>
-                            <td><?= $b['penerbit']; ?></td>
-                            <td><?= $b['tahun_terbit']; ?></td>
-                            <td>
-                                <a href="<?= base_url(); ?>buku/detail/<?= $b['id']; ?>" class="badge text-bg-info">Detail</a>
-                                <a href="<?= base_url(); ?>buku/edit/<?= $b['id']; ?>" class="badge text-bg-warning">Edit</a>
-                                <a href="<?= base_url(); ?>buku/delete/<?= $b['id']; ?>" class="badge text-bg-danger" onclick="return confirm('yakin?');">Hapus</a>
+                            <th scope="col">No</th>
+                            <th scope="col">Judul</th>
+                            <th scope="col">Penulis</th>
+                            <th scope="col">Penerbit</th>
+                            <th scope="col">Tahun Terbit</th>
+                            <th scope="col">Aksi</th>
                         </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($buku as $b): ?>
+                            <tr>
+                                <th scope="row"><?= ++$start; ?></th>
+                                <td><?= $b['judul']; ?></td>
+                                <td><?= $b['penulis']; ?></td>
+                                <td><?= $b['penerbit']; ?></td>
+                                <td><?= $b['tahun_terbit']; ?></td>
+                                <td>
+                                    <a href="<?= base_url(); ?>buku/detail/<?= $b['id']; ?>" class="badge text-bg-info">Detail</a>
+                                    <a href="<?= base_url(); ?>buku/edit/<?= $b['id']; ?>" class="badge text-bg-warning">Edit</a>
+                                    <a href="<?= base_url(); ?>buku/delete/<?= $b['id']; ?>" class="badge text-bg-danger" onclick="return confirm('yakin?');">Hapus</a>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
             <?php echo $this->pagination->create_links(); ?>
         </div>
     </div>
